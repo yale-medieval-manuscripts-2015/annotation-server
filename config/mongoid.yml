@@ -1,0 +1,27 @@
+development:
+  sessions:
+    default:
+      database: annotation_db_name
+      hosts:
+        #- localhost:27017
+        - 127.0.0.1:27017
+
+
+test:
+  sessions:
+    default:
+      database: annotation_db_name
+      hosts:
+        - localhost:27017
+
+production:
+   sessions:
+     default:
+       database: annotation_db_name
+       hosts:
+
+demo:
+  sessions:
+    default:
+      database: annotation_db_name
+      hosts:

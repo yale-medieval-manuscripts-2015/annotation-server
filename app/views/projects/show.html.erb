@@ -1,0 +1,33 @@
+<ul class="corner_login" >
+
+   <li> <%= link_to "Home", welcome_index_path %></li>
+        <% if user_signed_in? %>
+                <li><%= link_to('Logout', destroy_user_session_path, :method => :delete) %>  [logged in via <%= current_user.effective_provider  %> as <%= current_user.effective_uid  %>] <img id="AuthImg" src="http://scale.ydc2.yale.edu/iiif/auth.gif" style="width:1px;height:1px;" /></li>
+        <% else %>
+                <li><%= link_to('Login', new_user_session_path)  %></li>
+        <% end %>
+</ul>
+<div id="viewer"></div>
+<script type="text/javascript">
+
+    var yale_iiif_autocomplete_projects = ['creatingEnglish', 'gratian', 'hours'];
+    var yale_iiif_autocomplete_url = "<%= Rails.configuration.vocab_server.url %>";
+    var yale_iiif_show_autocomplete = yale_iiif_autocomplete_projects.indexOf('<%= @project.project_id %>') > -1;
+    reloadImage('AuthImg', 'http://scale.ydc2.yale.edu/iiif/auth.gif', 5);
+
+    $(function() {
+        Mirador({
+            "workspaceAutoSave": false,
+            "id": "viewer",
+            'openLayersAnnotoriusView': {
+                'baseUrl': '<%= Rails.configuration.annotation_server.url %>',
+                'projectId' : '<%= @project.project_id %>'
+            },
+            'imageView' : {
+                'annotationListProvider' : '<%= Rails.configuration.annotation_server.url %>lists',
+                'showAnnotationButton' : <%= @show_annotation_button %>
+            },
+            "data": <%= @mirador_configuration.html_safe %>
+        });
+    });
+</script>

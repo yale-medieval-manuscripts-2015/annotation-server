@@ -1,0 +1,28 @@
+<div class="container">
+    <div class="page-header">
+        <h1>Listing manifests</h1>
+    </div>
+    <div class="col-sm-12 col-md-12">
+            <table class="table table-striped table-bordered">
+              <tr>
+                <th>Label</th>
+                  <th>URI</th>
+                <th colspan="3">Actions</th>
+              </tr>
+
+            <% @manifests.each do |manifest| %>
+              <tr>
+                <td><%= manifest.label %></td>
+                <td><%= manifest.manifest_uri %></td>
+                <td><%= link_to 'Show', manifest %></td>
+                <td><%= link_to 'Edit', edit_manifest_path(manifest) %></td>
+                <td><%= link_to 'Destroy', manifest, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              </tr>
+            <% end %>
+            </table>
+
+            <br />
+
+            <%= link_to 'New Manifest', new_manifest_path %>
+     </div>
+</div>

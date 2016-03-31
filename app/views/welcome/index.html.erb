@@ -1,0 +1,74 @@
+<div class="container">
+    <div class="page-header">
+        <h2>Image Study
+            <small class="pull-right"><%= image_tag "ydc2.png" %> <%= link_to "Yale Digital Collections Center", "http://ydc2.yale.edu" %></small>
+        </h2>
+    </div>
+
+    <div class="col-sm-12 col-md-12">
+        <% flash.each do |name, msg| -%>
+            <%= content_tag(:div, class: flash_class(name)) do %>
+               <%= msg %>
+               <button class="close" data-dismiss="alert">×</button>
+            <% end %>
+        <% end %>
+    </div>
+
+        <div class="col-sm-12 col-md-8">
+            <div class="panel  panel-primary">
+                <div class="panel-heading">
+                    <h4>Projects</h4>
+                </div>
+                <div class="panel panel-body">
+        <p>
+            You have access to the projects below.
+            <% if user_signed_in? %>
+                You are logged in as <strong><%= current_user.effective_uid %></strong>
+                (<%= link_to('log out', destroy_user_session_path, :method => :delete) %>)
+                <img src="http://scale.ydc2.yale.edu/iiif/auth.gif" style="width:1px;height:1px;" />
+            <% else %>
+                <%= link_to('Log in', new_user_session_path) %> to view other projects.
+            <% end %>
+        </p>
+
+        <div class="media-list">
+            <% @projects.each do |project| %>
+                <div class="media project_entry">
+                    <%= link_to image_tag(project['thumbnailUrl'], {class: "project_thumbnail"}), project_path(project.project_id), {class: "project_title_link pull-left"} %>
+                    <div class="media-body">
+                        <h4 class="media-heading"><%= link_to sanitize(project['name']), project_path(project.project_id), {class: "project_title_link"} %></h4>
+                        <p><%= project['description'] %></p>
+                    </div>
+                </div>
+            <% end %>
+        </div>
+
+                </div>
+            </div>
+    </div>
+
+    <div class="col-sm-12 col-md-4">
+        <div class="panel  panel-default">
+            <div class="panel-heading">
+                <h4>Activity</h4>
+            </div>
+            <div class="panel panel-body">
+                <% if @activity.nil? or @activity.empty? %><p>No recent activity</p><% end %>
+
+        <div class="media-list small">
+            <% @activity.each do |event| %>
+                <div class="media">
+                    <%= link_to image_tag(event.gravatar_url, {class: "activity_thumbnail"}), project_path(event.project_id, {manifest_uri: event.manifest_uri, canvas_label: event.canvas_label}), {class: "activity_link pull-left"} %>
+                    <div class="media-body">
+                        <b class="media-heading"><%= event.user_name %></b> <%= event.activity_description %> an annotation on<br/>
+                        <%= link_to "#{event.manifest_label}, #{event.canvas_label}", project_path(event.project_id, {manifest_uri: event.manifest_uri, canvas_label: event.canvas_label}), {class: "activity_link"} %>
+                        <%= content_tag :p, "#{distance_of_time_in_words_to_now(event.activity_time)} ago", {class: 'text-muted'} %>
+                    </div>
+                </div>
+            <% end %>
+        </div>
+            </div>
+            </div>
+
+    </div>
+</div>

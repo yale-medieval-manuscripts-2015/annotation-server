@@ -1,0 +1,33 @@
+<div class="container">
+    <div class="page-header">
+        <h1>Listing Layers</h1>
+    </div>
+
+    <div class="col-sm-12 col-md-12">
+        <table class="table table-striped table-bordered">
+            <tr>
+                <th>URI</th>
+                <th>Label</th>
+                <th>Motivation</th>
+                <th colspan="3">Actions</th>
+            </tr>
+
+            <% @annotation_layers.each do |annotation_layer| %>
+                <tr>
+                    <td><%= annotation_layer['@id'] %></td>
+                    <td><%= annotation_layer.label %></td>
+                    <td><%= annotation_layer.motivation %></td>
+                    <td><%= link_to 'Show', annotation_layer %></td>
+                    <td><%= link_to 'Edit', edit_annotation_layer_path(annotation_layer) %></td>
+                    <td><%= link_to 'Destroy', annotation_layer, method: :delete, data: {confirm: 'Are you sure?'} %></td>
+                </tr>
+            <% end %>
+        </table>
+
+        <br/>
+
+        <%= link_to 'New Annotation layer', new_annotation_layer_path %>
+
+    </div>
+</div>
+

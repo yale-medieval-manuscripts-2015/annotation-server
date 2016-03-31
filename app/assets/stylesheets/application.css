@@ -1,0 +1,73 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ * require_tree .
+ */
+
+.corner_login {
+    position: absolute;
+    left:10px;
+    top: 3px;
+    z-index: 10000;
+    color: white;
+    height: 25px;
+
+    font-family: 'Open Sans','Lucida Grande',Verdana,Arial,sans-serif;
+    font-size: 1.2em;
+
+    float: left;
+    list-style: none outside none;
+    margin: 0;
+    padding: 5px 12px 0 0;
+}
+.corner_login li {
+    list-style: none outside none;
+    display: inline;
+    padding-right: 10px;
+}
+
+.corner_login a {
+    color: #FFFFFF;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.corner_login a:visited {
+    color: #FFFFFF;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.annotation_attribution {
+    color: orangered;
+}
+
+.activity_link, .activity_link:hover {
+    color: black;
+}
+
+.activity_thumbnail {
+    width: 64px;
+    border: 0px;
+}
+
+.project_entry {
+    padding-top: 10px;
+}
+
+.project_title_link, .project_title_link:hover {
+    color: black;
+}
+
+.project_thumbnail {
+    width: 128px;
+    border: 0px;
+}

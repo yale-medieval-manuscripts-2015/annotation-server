@@ -1,0 +1,44 @@
+<div class="container">
+    <div class="page-header">
+        <h1><%= @manifest.label %></h1>
+    </div>
+
+    <div class="col-sm-12 col-md-12">
+        <p id="notice"><%= notice %></p>
+
+        <p>
+          <b>Label:</b>
+          <%= @manifest.label %>
+        </p>
+
+        <p>
+            <b>URI:</b>
+            <%= @manifest.manifest_uri %>
+        </p>
+
+        <p>
+          <b>Description:</b>
+          <%= @manifest.description %>
+        </p>
+
+        <p>
+            <b>Permissions:</b>
+            <%= @manifest.permissions %>
+        </p>
+
+        <%= link_to 'Edit', edit_manifest_path(@manifest) %> |
+        <%= link_to 'Back', manifests_path %>
+
+        <p>
+          <b>Manifest json:</b>
+          <pre><%= JSON.pretty_generate(@manifest.manifest_json) %></pre>
+        </p>
+
+   </div>
+</div>
+
+
+
+
+
+

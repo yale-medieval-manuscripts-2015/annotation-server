@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= strip_tags(@project.name) %></title>
+    <%= stylesheet_link_tag    "application", :media => "all" %>
+    <%= stylesheet_link_tag    "projects", :media => "all" %>
+    <%= javascript_include_tag "application" %>
+
+    <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+    <%= csrf_meta_tags %>
+    <style type="text/css">
+        body { padding: 0; margin: 0; overflow: hidden; font-size: 70%; }
+        #viewer { background: #333 url(/assets/debut_dark.png) left top repeat; width: 100%; height: 100%; position: fixed; }
+    </style>
+</head>
+<body>
+<%= yield %>
+</body>
+</html>
